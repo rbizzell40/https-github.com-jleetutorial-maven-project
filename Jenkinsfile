@@ -12,13 +12,13 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy to Staging'){
+        stage ('deploy-to-staging'){
             steps {
                 build job: 'deploy-to-staging'
             }
         }
 
-        stage ('Deploy to Production'){
+        stage ('deploy-to-prod'){
             steps{
                 timeout(time:5, unit:'DAYS'){
                     input message:'Approve PRODUCTION Deployment?'
