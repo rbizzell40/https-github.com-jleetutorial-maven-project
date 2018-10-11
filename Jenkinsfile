@@ -26,7 +26,7 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "cp -i C:\\Users\\Karthik Kodur Mohan\\Desktop\\private key\\Jenkins.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
+                        bat "winscp -i C:\\Users\\Karthik Kodur Mohan\\Desktop\\private key\\Jenkins.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
                     }
                 }
 
