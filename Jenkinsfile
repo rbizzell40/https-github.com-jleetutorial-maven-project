@@ -26,7 +26,7 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "scp -i C:/Users/Karthik Kodur Mohan/Desktop/private key/Jenkins.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
+                        sh "scp **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat8/webapps -i C:/Users/Karthik Kodur Mohan/Desktop/private key/Jenkins.pem"
                     }
                 }
 
