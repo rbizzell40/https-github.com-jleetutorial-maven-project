@@ -1,36 +1,21 @@
-pipeline {
-    agent any
+  pipeline {
+      agent any
+      stages {
+          stage('Build') {
+              steps {
+                  sh 'mvn clean package'
+              }
+              post {
+                  success {
+                      echo 'Now Archiving...'
+                      archiveArtifacts artifacts: '**/target/*.war'
+                  }
+              }
 
-    parameters {
-         string(name: 'tomcat_dev', defaultValue: '18.221.239.117', description: 'Staging Server')
-    }
+          }
 
-    triggers {
-         pollSCM('* * * * *')
-     }
 
-stages{
-        stage('Build'){
-            steps {
-                sh 'mvn clean package'
-            }
-            post {
-                success {
-                    echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '**/target/*.war'
-                }
-            }
-        }
+      }
 
-        stage ('Deployments'){
-            parallel{
-                stage ('Deploy to Staging'){
-                    steps {
-                        sh "scp **/target/*.war ec2-user@${paras.tomcat_dev}:/var/lib/tomcat8/webapps -i C:/Users/Karthik\ Kodur\ Mohan/Desktop/private_key/Jenkins.pem"
-                    }
-                }
 
-            }
-        }
-    }
-}
+  }
