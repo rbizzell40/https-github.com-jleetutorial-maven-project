@@ -1,9 +1,9 @@
 pipeline {
     agent any
     tools {
-            rtMaven.tool = "Maven-3.6.0"
-            maven 'localMaven'
-    }
+           rtMaven.tool = "Maven-3.6.0"
+           maven 'localmaven'
+        }
     stages{
 
         stage('Build'){
