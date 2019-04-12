@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         rtMaven.tool = "Maven-3.6.0"
-        maven 'localmaven'
+        maven 'localMaven'
     }
     stages{
 
